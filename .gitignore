@@ -44,9 +44,13 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local gh cli download
+.tools/
+
 # local scripts progress
 scripts/.mascot-gen-progress.jsonl
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env*
