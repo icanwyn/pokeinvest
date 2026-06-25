@@ -1,0 +1,845 @@
+[
+  {
+    "id": "money",
+    "mod": "1 · Money & Why We Invest",
+    "title": "Coins for the card shop",
+    "emoji": "💵",
+    "xp": 80,
+    "read": [
+      "Think of money like the coins you bring to the card shop. A coin by itself is just metal — you can't play it in a battle. It's valuable only because the shop agrees to trade real cards for it.",
+      "Money was invented so you don't have to swap your Pikachu directly for a snack and hope the seller wants a Pikachu. It's a tool everyone agrees to accept — a promise we all trust."
+    ],
+    "quiz": [
+      {
+        "q": "Why is using money easier than trading your Pikachu card straight for a snack?",
+        "a": [
+          "Cards are too heavy",
+          "You'd have to find someone who wants exactly that card",
+          "Snacks are rare"
+        ],
+        "correct": 1,
+        "why": "Money means you never have to find someone who wants exactly what you have — that's why we invented it."
+      }
+    ]
+  },
+  {
+    "id": "savespend",
+    "mod": "1 · Money & Why We Invest",
+    "title": "Bench some coins",
+    "emoji": "🐷",
+    "xp": 80,
+    "read": [
+      "A smart trainer doesn't blow every coin at the shop the second they get it. You 'bench' some for later — keep a few in reserve, like holding energy back for a big move.",
+      "Grown-ups call this 'pay yourself first': the moment money arrives, set some aside BEFORE you spend the rest. Spending first and saving 'whatever's left' usually leaves nothing on the bench."
+    ],
+    "quiz": [
+      {
+        "q": "'Pay yourself first' means…",
+        "a": [
+          "Buy yourself a pack every day",
+          "Set some aside to save before spending the rest",
+          "Spend on yourself before friends"
+        ],
+        "correct": 1,
+        "why": "Save first, spend second — that way the bench actually has coins on it."
+      }
+    ]
+  },
+  {
+    "id": "needswants",
+    "mod": "1 · Money & Why We Invest",
+    "title": "Staples vs. chase cards",
+    "emoji": "🎮",
+    "xp": 80,
+    "read": [
+      "Your deck NEEDS its staple cards to even work — the basics that win games. A shiny chase holo is something you WANT: awesome to have, but your deck survives without it.",
+      "Money works the same way. Needs are things you must have (food, a place to live). Wants are the fun extras. Knowing which is which is how every smart money choice starts."
+    ],
+    "quiz": [
+      {
+        "q": "Which one is a WANT, not a need?",
+        "a": [
+          "Clean water",
+          "A brand-new chase holo card",
+          "Somewhere to live"
+        ],
+        "correct": 1,
+        "why": "A chase card is fun but optional — a want. Water and shelter are needs."
+      }
+    ]
+  },
+  {
+    "id": "inflation",
+    "mod": "1 · Money & Why We Invest",
+    "title": "Packs keep getting pricier",
+    "emoji": "🎈",
+    "xp": 110,
+    "read": [
+      "Ask an older player what a booster pack used to cost. Cheaper, right? Pack prices creep up a little every year. That slow creep — on everything — is called inflation.",
+      "Here's the sneaky part: coins sitting in your piggy bank buy FEWER packs each year, even though the number of coins never changed. That's the #1 reason people invest — to grow money faster than packs (and everything else) get pricier."
+    ],
+    "quiz": [
+      {
+        "q": "Packs cost a bit more each year. Coins sitting still in your piggy bank will…",
+        "a": [
+          "Buy more packs over time",
+          "Buy fewer packs over time",
+          "Stay exactly even"
+        ],
+        "correct": 1,
+        "why": "Inflation means the same coins buy less later — standing still actually loses ground."
+      },
+      {
+        "q": "What's a good way to beat inflation?",
+        "a": [
+          "Hide all coins in a jar",
+          "Grow your money (invest) faster than prices rise",
+          "Spend it all today"
+        ],
+        "correct": 1,
+        "why": "Investing aims to grow your money faster than inflation eats it."
+      }
+    ]
+  },
+  {
+    "id": "whyinvest",
+    "mod": "1 · Money & Why We Invest",
+    "title": "Why invest at all?",
+    "emoji": "🌱",
+    "xp": 100,
+    "read": [
+      "Coins in a jar are safe but barely grow — and packs keep getting pricier. A great card collection, though, can climb in value over the years.",
+      "Investing is just that idea with companies: instead of letting coins sit, you turn them into cards (shares of real businesses) that can grow. More risk than a jar — but over many years, owning good 'cards' has been one of the best ways to grow wealth. You're planting a tree, not buying a snack."
+    ],
+    "quiz": [
+      {
+        "q": "The main reason to invest instead of only saving is…",
+        "a": [
+          "It's exciting",
+          "To grow money faster than prices rise",
+          "Jars are dangerous"
+        ],
+        "correct": 1,
+        "why": "Investing puts money to work so it can outgrow inflation — the whole point."
+      }
+    ]
+  },
+  {
+    "id": "slice",
+    "mod": "2 · What Is a Stock?",
+    "title": "Every company is a card",
+    "emoji": "🍕",
+    "xp": 90,
+    "read": [
+      "Here's the big reveal of this whole game: every company is a Pokémon card. A 'share' (or 'stock') is one slice of that card — buy one and you really own a tiny piece of the real business.",
+      "Add an Apple card to your binder and you own a sliver of every iPhone sold. Companies sell these slices so anyone — even a kid — can collect a piece of a business they love."
+    ],
+    "quiz": [
+      {
+        "q": "Buying 1 share of a company is like…",
+        "a": [
+          "Renting the card for a day",
+          "Adding a real ownership slice of it to your binder",
+          "Just writing down a number"
+        ],
+        "correct": 1,
+        "why": "One share = one real ownership slice of the business, profits included."
+      }
+    ]
+  },
+  {
+    "id": "whyshares",
+    "mod": "2 · What Is a Stock?",
+    "title": "Why companies print cards",
+    "emoji": "🏭",
+    "xp": 90,
+    "read": [
+      "To build factories, hire people, or invent new things, a company needs lots of coins. One way to get them: 'print cards' of itself — sell shares to the public.",
+      "You hand the company coins; it hands you a card (a share of ownership). It gets to grow, and you share in whatever profits and growth come next. Everybody can win."
+    ],
+    "quiz": [
+      {
+        "q": "Why does a company sell shares (print cards of itself)?",
+        "a": [
+          "To give money away",
+          "To raise coins so it can grow",
+          "Because a law forces it"
+        ],
+        "correct": 1,
+        "why": "Selling shares raises money the company uses to grow — and owners share the upside."
+      }
+    ]
+  },
+  {
+    "id": "market",
+    "mod": "2 · What Is a Stock?",
+    "title": "The giant trading floor",
+    "emoji": "🏪",
+    "xp": 90,
+    "read": [
+      "The 'stock market' is one enormous card shop where millions of trainers buy and sell company-cards all day. You don't haggle one-on-one at recess — the market quietly matches every buyer with a seller.",
+      "Each card has a short nickname called a 'ticker': Apple is AAPL, Nike is NKE, Nintendo's rival Nvidia is NVDA. Type a ticker into Stock-Dex and you're pulling that card the same way the pros do."
+    ],
+    "quiz": [
+      {
+        "q": "The stock market is basically…",
+        "a": [
+          "A bank vault",
+          "A giant shop matching card buyers and sellers",
+          "A government office"
+        ],
+        "correct": 1,
+        "why": "It's a huge marketplace where buyers and sellers of company-cards meet."
+      }
+    ]
+  },
+  {
+    "id": "price",
+    "mod": "2 · What Is a Stock?",
+    "title": "Who sets a card's price?",
+    "emoji": "🏷️",
+    "xp": 90,
+    "read": [
+      "No shopkeeper stamps a price on a card. A card is worth exactly what trainers will pay for it right now — just like in the schoolyard.",
+      "When everyone wants a card, buyers bid the price UP. When everyone's dumping it, the price drops. The crowd sets the price, second by second — not the company."
+    ],
+    "quiz": [
+      {
+        "q": "A card's price went up today because…",
+        "a": [
+          "The company mailed out new prices",
+          "More trainers wanted to buy than sell",
+          "The government raised it"
+        ],
+        "correct": 1,
+        "why": "Prices move on supply and demand — the tug-of-war between buyers and sellers."
+      }
+    ]
+  },
+  {
+    "id": "scarce",
+    "mod": "2 · What Is a Stock?",
+    "title": "Why a Charizard costs more",
+    "emoji": "💠",
+    "xp": 100,
+    "read": [
+      "A Charizard costs more than a common card for two reasons together: few exist (scarce) AND tons of trainers want it (demand). Either one alone isn't enough.",
+      "Companies work the same way. There's a limited number of shares, and a business with a rare, hard-to-copy power gets the holographic treatment — special, and pricier."
+    ],
+    "quiz": [
+      {
+        "q": "What makes a card (or a company) command a high price?",
+        "a": [
+          "It's brand new",
+          "It's rare AND lots of trainers want it",
+          "It's just shiny"
+        ],
+        "correct": 1,
+        "why": "Scarcity only matters when demand is high too. Rare + wanted = valuable."
+      }
+    ]
+  },
+  {
+    "id": "cap",
+    "mod": "3 · Reading a Company",
+    "title": "HP = how big and tough",
+    "emoji": "❤️",
+    "xp": 100,
+    "read": [
+      "Top-right of every card: HP. Big HP means a big, tough Pokémon that's hard to knock out. On a company-card, HP is the 'market cap' — the company's total size.",
+      "High-HP cards are like fully-evolved Pokémon: sturdy, but they grow slowly. Low-HP cards are Basic-stage: small, bumpier, but with the most room to evolve and grow."
+    ],
+    "quiz": [
+      {
+        "q": "A card's HP (market cap) tells you…",
+        "a": [
+          "How much you'll earn",
+          "How big and tough the company is",
+          "Tomorrow's price"
+        ],
+        "correct": 1,
+        "why": "Market cap = the company's total size. Big HP = a big, established company."
+      }
+    ]
+  },
+  {
+    "id": "profit",
+    "mod": "3 · Reading a Company",
+    "title": "Attacks: damage vs. landed damage",
+    "emoji": "⚔️",
+    "xp": 110,
+    "read": [
+      "The 'Revenue Rush' attack shows all the damage on paper — every dollar coming in from sales. Flashy, but the opponent's defense (the company's costs) blocks a lot of it.",
+      "'Profit Strike' is the damage that actually LANDS after all costs are paid. A card can have a giant revenue attack but tiny real profit. Profit is the hit that counts."
+    ],
+    "quiz": [
+      {
+        "q": "A lemonade stand 'attacks' for $100 of sales but spends $90 on lemons. The damage that LANDS (profit) is…",
+        "a": [
+          "$100",
+          "$90",
+          "$10"
+        ],
+        "correct": 2,
+        "why": "Revenue is the $100 on paper; profit is what's left after costs — $10."
+      }
+    ]
+  },
+  {
+    "id": "margin",
+    "mod": "3 · Reading a Company",
+    "title": "How much damage gets through",
+    "emoji": "📐",
+    "xp": 100,
+    "read": [
+      "Two cards both 'attack' for $100 of sales. One only lands $10 of real profit; the other lands $50. Same attack — wildly different results.",
+      "That 'how much actually gets through' is the profit margin. A high margin means the card is brilliant at turning sales into real profit — one of the clearest signs of a strong business."
+    ],
+    "quiz": [
+      {
+        "q": "A company with a HIGH profit margin…",
+        "a": [
+          "Sells the most stuff",
+          "Keeps more profit from each sales dollar",
+          "Has the cheapest price"
+        ],
+        "correct": 1,
+        "why": "Margin is the slice of each sales dollar that becomes profit — higher is stronger."
+      }
+    ]
+  },
+  {
+    "id": "balance",
+    "mod": "3 · Reading a Company",
+    "title": "Flip the card: owns vs. owes",
+    "emoji": "⚖️",
+    "xp": 110,
+    "read": [
+      "Every card has a back. Flip it (tap 'Balance sheet') to see what the company OWNS — cash, buildings, gear — versus what it OWES, its debts.",
+      "A healthy card owns way more than it owes, like a trainer with a full coin pouch and no IOUs. Owing more than you own is a flashing Weakness if a tough battle comes."
+    ],
+    "quiz": [
+      {
+        "q": "A financially strong company usually…",
+        "a": [
+          "Owes more than it owns",
+          "Owns much more than it owes",
+          "Has zero cash"
+        ],
+        "correct": 1,
+        "why": "Owning more than you owe is the sign of a healthy balance sheet."
+      }
+    ]
+  },
+  {
+    "id": "debt",
+    "mod": "3 · Reading a Company",
+    "title": "Debt = a heavy retreat cost",
+    "emoji": "🔗",
+    "xp": 100,
+    "read": [
+      "Debt is borrowed coins the company must pay back. A little is fine — even useful, like spending energy to power up a bigger attack.",
+      "But heavy debt is like a huge Retreat Cost: the card gets stuck. The loan payments are due even on a bad turn when sales are down. That's why big debt shows up as a card's Weakness."
+    ],
+    "quiz": [
+      {
+        "q": "Why is too much debt risky for a company?",
+        "a": [
+          "Debt is illegal",
+          "It must be repaid even in bad times",
+          "It makes the art ugly"
+        ],
+        "correct": 1,
+        "why": "Debt payments don't pause when business is bad — that's the danger of borrowing too much."
+      }
+    ]
+  },
+  {
+    "id": "moat",
+    "mod": "3 · Reading a Company",
+    "title": "The Ability nobody can copy",
+    "emoji": "🏰",
+    "xp": 110,
+    "read": [
+      "See the 'Ability' on a strong card? That's the passive power rivals just can't copy. In investing it's called a 'moat': Coca-Cola's secret recipe and famous name, Disney's beloved characters, Apple's locked-in ecosystem.",
+      "A wide moat guards a company's profits the way a castle moat keeps attackers out. Hunting for cards with powerful, copy-proof Abilities is one of the best moves an investor can make."
+    ],
+    "quiz": [
+      {
+        "q": "Which is the strongest Ability (moat)?",
+        "a": [
+          "A logo everyone trusts and can't copy",
+          "A nice office",
+          "Lots of employees"
+        ],
+        "correct": 0,
+        "why": "A brand or edge rivals can't copy protects profits for years — a true moat."
+      }
+    ]
+  },
+  {
+    "id": "growthsteady",
+    "mod": "3 · Reading a Company",
+    "title": "Basic-stage vs. fully evolved",
+    "emoji": "🌳",
+    "xp": 100,
+    "read": [
+      "Some cards are Basic-stage: small, exciting, with huge room to evolve — but their price bounces around a lot. Others are fully evolved tanks: big, steady, often paying dividends, but slower to grow.",
+      "Neither is 'better.' Growth cards chase a bigger future; steady cards give reliability and income today. Strong trainers keep some of each on the team."
+    ],
+    "quiz": [
+      {
+        "q": "A young, fast-growing (Basic-stage) company is usually…",
+        "a": [
+          "Boring and safe",
+          "More exciting but bumpier and riskier",
+          "Guaranteed to win"
+        ],
+        "correct": 1,
+        "why": "Fast growth comes with bigger price swings and more risk — exciting but bumpy."
+      }
+    ]
+  },
+  {
+    "id": "pe",
+    "mod": "4 · Price vs. Value",
+    "title": "Rarity = the price tag (P/E)",
+    "emoji": "🔮",
+    "xp": 120,
+    "read": [
+      "A Secret Rare holo costs way more than a common, even for the same Pokémon. The card's RARITY is its price tag. For companies, that price tag is the P/E ratio — how many coins you pay for $1 of the company's yearly profit.",
+      "High P/E = a holographic, premium card: the crowd expects huge future growth. Low P/E = a common: cheaper, calmer hopes. Holo doesn't mean 'better in battle' — it means 'more expensive to buy.'"
+    ],
+    "quiz": [
+      {
+        "q": "A company has a P/E of 60 (a 'Secret Rare' price tag). That usually means…",
+        "a": [
+          "It's cheap",
+          "Trainers pay a big premium and expect lots of growth",
+          "It pays no taxes"
+        ],
+        "correct": 1,
+        "why": "A high P/E is a high price for today's profit — the crowd is betting on big growth."
+      }
+    ]
+  },
+  {
+    "id": "value",
+    "mod": "4 · Price vs. Value",
+    "title": "Best card ≠ priciest card",
+    "emoji": "💎",
+    "xp": 160,
+    "read": [
+      "This is the secret the whole game turns on: a card's BATTLE STATS (how good the company is) and its SHOP PRICE are two different things.",
+      "A glittering holo can be wildly overpriced for how it actually plays. And a plain common can be a hidden powerhouse going cheap. The best buy is a great card AT a fair price — you need BOTH.",
+      "So when you size up a card, ask two questions, not one: Is this a strong company? AND is the price fair? That's how champions pick."
+    ],
+    "quiz": [
+      {
+        "q": "You spot an amazing company, but the price is sky-high. A smart trainer…",
+        "a": [
+          "Buys instantly — it's amazing!",
+          "Checks whether the price is fair first",
+          "Avoids all amazing companies"
+        ],
+        "correct": 1,
+        "why": "Great card + too-high price can still be a bad buy. Value = quality AND price."
+      },
+      {
+        "q": "Can a plain, cheap 'common' company beat a famous, expensive 'holo' one?",
+        "a": [
+          "Never",
+          "Yes — if you pay a fair price for what you get",
+          "Only if it's shiny"
+        ],
+        "correct": 1,
+        "why": "Value isn't about sparkle or fame — it's what you get for the price you pay."
+      }
+    ]
+  },
+  {
+    "id": "moves",
+    "mod": "4 · Price vs. Value",
+    "title": "Why a card's price jumps",
+    "emoji": "📰",
+    "xp": 110,
+    "read": [
+      "A card's shop price can leap on hype: a tournament win, a brand-new set, a hot YouTube video. Sometimes a great card dips on a scary rumor; sometimes a weak one spikes on pure buzz.",
+      "The lesson: in the SHORT term, hype and headlines shove prices around. In the LONG term, what wins is how the card actually battles — the company's real results. Results win eventually."
+    ],
+    "quiz": [
+      {
+        "q": "Over many YEARS, what matters most to a card's price?",
+        "a": [
+          "Today's hype",
+          "The crowd's mood",
+          "How well the company actually performs"
+        ],
+        "correct": 2,
+        "why": "Short-term it's hype; long-term it's real results. Results win out over time."
+      }
+    ]
+  },
+  {
+    "id": "bullbear",
+    "mod": "4 · Price vs. Value",
+    "title": "Hot market, cold market",
+    "emoji": "🐂",
+    "xp": 100,
+    "read": [
+      "Sometimes the whole card market runs HOT — everyone buying, prices charging up. That's a 'bull market' (picture a bull's horns going up). Sometimes it runs COLD — everyone selling, prices swiping down. That's a 'bear market.'",
+      "Both are totally normal and both always pass. A cold (bear) market feels scary, but it's also when great cards go on sale."
+    ],
+    "quiz": [
+      {
+        "q": "A 'bear market' means card prices are generally…",
+        "a": [
+          "Charging up",
+          "Swiping down",
+          "Frozen solid"
+        ],
+        "correct": 1,
+        "why": "Bear = falling; bull = rising. Both phases always pass."
+      }
+    ]
+  },
+  {
+    "id": "riskreward",
+    "mod": "5 · Risk & Smart Behavior",
+    "title": "Glass cannon vs. tank",
+    "emoji": "🎲",
+    "xp": 110,
+    "read": [
+      "A glass-cannon card hits for huge damage but faints in one blow — big reward, big risk. A tanky card is reliable but slow. That trade-off runs through ALL of investing.",
+      "A safe savings jar is a tank: slow, almost never faints. A hot new stock is a glass cannon: could double, could crash. The goal isn't zero risk (too slow) or wild risk (too reckless) — it's SMART risk you understand and can survive."
+    ],
+    "quiz": [
+      {
+        "q": "A card that could earn a LOT usually…",
+        "a": [
+          "Is totally safe",
+          "Also carries a bigger risk of fainting (losing)",
+          "Is guaranteed by the bank"
+        ],
+        "correct": 1,
+        "why": "Higher possible reward almost always comes with higher risk — no free lunch."
+      },
+      {
+        "q": "The smartest approach to risk is to…",
+        "a": [
+          "Avoid all risk forever",
+          "Bet everything on one wild card",
+          "Take risks you understand and can handle"
+        ],
+        "correct": 2,
+        "why": "Smart, understood risk is the sweet spot between too-slow and too-reckless."
+      }
+    ]
+  },
+  {
+    "id": "diversify",
+    "mod": "5 · Risk & Smart Behavior",
+    "title": "Don't run an all-Fire deck",
+    "emoji": "🌈",
+    "xp": 120,
+    "read": [
+      "Build a deck of ALL Fire-types and a single Water gym wipes you out. Smart trainers mix types so one bad matchup can't end the whole battle.",
+      "Your binder of companies is the same. Spreading across different types — 'diversifying' — means when one card zigs, another zags. Check the colored bars in your portfolio: is one type eating the whole pie?"
+    ],
+    "quiz": [
+      {
+        "q": "Why mix different company 'types' in your binder?",
+        "a": [
+          "It looks cooler",
+          "So one bad matchup can't wipe you out",
+          "To pay more fees"
+        ],
+        "correct": 1,
+        "why": "Diversifying lowers risk — trouble in one type won't sink the whole team."
+      },
+      {
+        "q": "Your entire binder is one company. That's…",
+        "a": [
+          "Perfectly safe",
+          "Risky — everything rides on one card",
+          "The smartest plan"
+        ],
+        "correct": 1,
+        "why": "All-in on one card means one piece of bad news can hurt everything you own."
+      }
+    ]
+  },
+  {
+    "id": "volatility",
+    "mod": "5 · Risk & Smart Behavior",
+    "title": "The price wiggles daily",
+    "emoji": "🎢",
+    "xp": 110,
+    "read": [
+      "A card's shop price jiggles every single day — up a little, down a little. That wiggling is called volatility, and it's completely normal. Even Charizard has red days.",
+      "Big idea: the card didn't get weaker when its price dipped — only the price moved. A drop is just a 'paper loss.' It becomes a REAL loss only if you panic and sell your good card cheap."
+    ],
+    "quiz": [
+      {
+        "q": "Your card's price falls 10%, but you don't sell. You have…",
+        "a": [
+          "A real, locked-in loss",
+          "A paper loss that isn't real yet",
+          "Definitely made money"
+        ],
+        "correct": 1,
+        "why": "Losses lock in only when you sell. Hold a good card and the dip can recover."
+      }
+    ]
+  },
+  {
+    "id": "timing",
+    "mod": "5 · Risk & Smart Behavior",
+    "title": "You can't call the peak",
+    "emoji": "⏱️",
+    "xp": 110,
+    "read": [
+      "Loads of trainers try to guess the exact day a card will peak so they can sell at the top. The truth? Almost nobody can do it — not even pros. People who flip in and out usually miss the biggest jumps.",
+      "Calmly HOLDING good cards over years beats darting in and out. It's 'time IN the market,' not 'timing the market.'"
+    ],
+    "quiz": [
+      {
+        "q": "Trying to guess the exact perfect day to buy and sell usually…",
+        "a": [
+          "Works great",
+          "Fails — holding good cards works better",
+          "Is easy with practice"
+        ],
+        "correct": 1,
+        "why": "Timing the market is nearly impossible; patient time IN the market wins."
+      }
+    ]
+  },
+  {
+    "id": "dividends",
+    "mod": "5 · Risk & Smart Behavior",
+    "title": "Cards that pay you to bench them",
+    "emoji": "🪙",
+    "xp": 110,
+    "read": [
+      "Some cards drop a coin into your hand every turn just for keeping them on your bench — that's a dividend. Coca-Cola has paid one for over 60 years straight.",
+      "Even better, you can REINVEST those coins to buy more cards automatically — pouring extra fuel on the compounding fire you're about to learn."
+    ],
+    "quiz": [
+      {
+        "q": "What's a dividend?",
+        "a": [
+          "A fee you pay to own a card",
+          "A coin the company pays you for holding it",
+          "A kind of tax"
+        ],
+        "correct": 1,
+        "why": "A dividend is the company sharing profit with its owners — income just for holding."
+      }
+    ]
+  },
+  {
+    "id": "compound",
+    "mod": "5 · Risk & Smart Behavior",
+    "title": "Energy that builds on itself",
+    "emoji": "⏳",
+    "xp": 160,
+    "read": [
+      "In battle, energy builds up turn after turn until you unleash something huge. Compounding is money's version: your gains start earning their OWN gains, snowballing slowly then explosively.",
+      "Kids have the one ingredient pros wish they had — time. Open the Time Machine tab and watch a small pile grow over 20 or 30 years. Starting early beats starting big, every single time."
+    ],
+    "quiz": [
+      {
+        "q": "What makes compounding so powerful?",
+        "a": [
+          "You add huge amounts of money",
+          "Your gains start earning their own gains, snowballing",
+          "Prices never fall"
+        ],
+        "correct": 1,
+        "why": "Compounding = earnings on your earnings. Given time, the snowball gets enormous."
+      },
+      {
+        "q": "Who gets the MOST out of compounding?",
+        "a": [
+          "Whoever starts earliest",
+          "Whoever is richest",
+          "Whoever trades most"
+        ],
+        "correct": 0,
+        "why": "Time is the secret ingredient — starting early beats starting big."
+      }
+    ]
+  },
+  {
+    "id": "dca",
+    "mod": "5 · Risk & Smart Behavior",
+    "title": "Buy a pack every month",
+    "emoji": "📆",
+    "xp": 120,
+    "read": [
+      "Instead of blowing all your birthday money on packs in one day and stressing about timing, you buy one pack every month. Investors call this 'dollar-cost averaging.'",
+      "Some months packs are pricey, some months cheap — and it all averages out. It turns the scary question 'is NOW the right time?' into a calm, automatic habit."
+    ],
+    "quiz": [
+      {
+        "q": "Investing a little every month (instead of all at once)…",
+        "a": [
+          "Guarantees you buy at the bottom",
+          "Smooths out the ups and downs over time",
+          "Means you'll lose money"
+        ],
+        "correct": 1,
+        "why": "Buying steadily averages your price and removes the stress of timing."
+      }
+    ]
+  },
+  {
+    "id": "funds",
+    "mod": "6 · Becoming a Wise Investor",
+    "title": "Buy the whole booster box",
+    "emoji": "🧺",
+    "xp": 120,
+    "read": [
+      "Instead of hunting one perfect card, you could buy a whole booster BOX — a little of everything at once. An 'index fund' is exactly that: one purchase that holds tiny pieces of hundreds of companies.",
+      "Buy one and you're instantly diversified, cheaply and easily. Many of the smartest investors alive say simple index funds are the best choice for most people."
+    ],
+    "quiz": [
+      {
+        "q": "An index fund lets you…",
+        "a": [
+          "Own one company really hard",
+          "Own tiny pieces of many companies at once",
+          "Avoid the market"
+        ],
+        "correct": 1,
+        "why": "One index fund = instant diversification across hundreds of companies."
+      }
+    ]
+  },
+  {
+    "id": "fees",
+    "mod": "6 · Becoming a Wise Investor",
+    "title": "The shop takes a cut",
+    "emoji": "🍴",
+    "xp": 100,
+    "read": [
+      "Every time you trade at the card shop, the shop takes a small cut. Same with investing fees — and they sound tiny, like 1%.",
+      "But over 30 or 40 years those little cuts quietly eat a HUGE bite of your final pile. Trading less and choosing cheap, simple funds wins the long race."
+    ],
+    "quiz": [
+      {
+        "q": "Over many years, high fees…",
+        "a": [
+          "Don't really matter",
+          "Quietly shrink your returns a lot",
+          "Make you richer"
+        ],
+        "correct": 1,
+        "why": "Small fees compound against you over decades — keep them low."
+      }
+    ]
+  },
+  {
+    "id": "emotions",
+    "mod": "6 · Becoming a Wise Investor",
+    "title": "Chase-card fever & panic",
+    "emoji": "😱",
+    "xp": 130,
+    "read": [
+      "Two feelings wreck more trainers than any rival. Chase-card fever (FOMO) makes you overpay for whatever's hyped because everyone else is grabbing it. Panic makes you dump your good cards cheap the second prices dip.",
+      "Champions notice these feelings and slow down. A handy rule: be a little careful when everyone's greedy, and a little brave when everyone's scared."
+    ],
+    "quiz": [
+      {
+        "q": "Buying a card ONLY because it's soaring and everyone's hyped is driven by…",
+        "a": [
+          "Careful research",
+          "FOMO / chase-card fever",
+          "A dividend"
+        ],
+        "correct": 1,
+        "why": "Chasing hype is FOMO — a classic way to buy high and get hurt."
+      },
+      {
+        "q": "When everyone around you is panic-selling, a wise trainer often…",
+        "a": [
+          "Panics too",
+          "Stays calm and thinks clearly",
+          "Sells twice as fast"
+        ],
+        "correct": 1,
+        "why": "Calm beats crowd-panic. Fear is when the big mistakes happen."
+      }
+    ]
+  },
+  {
+    "id": "scams",
+    "mod": "6 · Becoming a Wise Investor",
+    "title": "Beware the fake Charizard",
+    "emoji": "🚨",
+    "xp": 120,
+    "read": [
+      "Watch out for the kid hissing 'guaranteed mint Charizard, today only, double your money!' Real cards are never guaranteed riches, and the rare ones are often the most faked.",
+      "Investing scams use the same tricks: urgency ('act now!'), secret 'can't-lose' tips, promises of fast guaranteed money. The golden rule: if it sounds too good to be true, it is. Protecting your coins matters as much as growing them."
+    ],
+    "quiz": [
+      {
+        "q": "Someone guarantees you'll double your money in a week. You should…",
+        "a": [
+          "Invest everything fast",
+          "Walk away — it's almost certainly a scam",
+          "Tell all your friends to join"
+        ],
+        "correct": 1,
+        "why": "Guaranteed fast riches = scam. Real investing is slow and never guaranteed."
+      }
+    ]
+  },
+  {
+    "id": "patience",
+    "mod": "6 · Becoming a Wise Investor",
+    "title": "Leave it in the binder",
+    "emoji": "🧘",
+    "xp": 140,
+    "read": [
+      "A great card left safe in your binder can climb in value for years. One you yank out to trade every week never gets the chance — and the shop nibbles a fee each time.",
+      "The best trainers are almost boring: they pick good cards and wait. A seed left in the ground becomes a tree; a seed dug up every week to 'check on it' never grows at all."
+    ],
+    "quiz": [
+      {
+        "q": "The market drops 10% in a scary week. The wise long-term move is usually to…",
+        "a": [
+          "Sell everything fast",
+          "Stay calm and keep holding good cards",
+          "Buy and sell every hour"
+        ],
+        "correct": 1,
+        "why": "Time in the market beats timing the market. Patience usually wins."
+      }
+    ]
+  },
+  {
+    "id": "goals",
+    "mod": "6 · Becoming a Wise Investor",
+    "title": "Build for the right tournament",
+    "emoji": "🎯",
+    "xp": 120,
+    "read": [
+      "Are you building a deck for next weekend's tournament, or one years away? That answer changes everything about how much risk fits.",
+      "Money you'll need very soon should stay safe — a bad week shouldn't be able to wreck it right when you need it. Money for a faraway goal CAN ride out the bumps and aim for more growth. Match the risk to the timeline."
+    ],
+    "quiz": [
+      {
+        "q": "Money you'll need next month should be…",
+        "a": [
+          "In risky cards for max growth",
+          "Kept safe, NOT in bumpy stocks",
+          "Spent right away"
+        ],
+        "correct": 1,
+        "why": "Short-term money stays safe; only money you won't need for years belongs in stocks."
+      }
+    ]
+  }
+]
