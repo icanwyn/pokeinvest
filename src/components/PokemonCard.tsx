@@ -21,7 +21,7 @@ const STICKY_HEADER_HEIGHT = 80;
 interface PokemonCardProps {
   card: StockCard;
   quantity?: number;
-  variant?: "watchlist" | "portfolio";
+  variant?: "watchlist" | "portfolio" | "scout";
   onRemove?: () => void;
   onSelect?: () => void;
   onQuantityChange?: (quantity: number) => void;
@@ -44,6 +44,7 @@ export function PokemonCard({
   selected,
 }: PokemonCardProps) {
   const isWatchlist = variant === "watchlist";
+  const isScout = variant === "scout";
   const rarity = RARITY_TIERS.find((r) => r.tier === card.rarity) ?? RARITY_TIERS[0];
   const evolution = EVOLUTION_STAGES.find((e) => e.stage === card.evolutionStage) ?? EVOLUTION_STAGES[0];
   const atkStat = card.stats.find((s) => s.label === "ATK");
@@ -88,7 +89,9 @@ export function PokemonCard({
 
         <div className="card-top-bar">
           <span className="card-stage">{evolution.label}</span>
-          {isWatchlist ? (
+          {isScout ? (
+            <span className="card-scout-badge">✨ Pick me!</span>
+          ) : isWatchlist ? (
             <span className="card-watch-badge">👀 Watching</span>
           ) : (
             <span className="card-rarity-mini">{rarity.label}</span>
@@ -141,7 +144,9 @@ export function PokemonCard({
         )}
 
         <div className="card-footer">
-          <span className="footer-price">{formatCurrency(card.price)}</span>
+          <span className="footer-price">
+            {isScout ? "Tap to pick!" : formatCurrency(card.price)}
+          </span>
         </div>
 
         {onRemove && (
@@ -159,17 +164,19 @@ export function PokemonCard({
 
       </div>
 
-      <CardHoverInfo
-        card={card}
-        quantity={isWatchlist ? 0 : quantity}
-        placement={hoverPlacement}
-      />
+      {!isScout && (
+        <CardHoverInfo
+          card={card}
+          quantity={isWatchlist ? 0 : quantity}
+          placement={hoverPlacement}
+        />
+      )}
 
       {isWatchlist ? (
         <div className="card-watchlist-chip">
           <span>👀 On watchlist — tap to learn</span>
         </div>
-      ) : (
+      ) : isScout ? null : (
         onQuantityChange && (
           <div className="card-quantity-chip" onClick={(e) => e.stopPropagation()}>
             <input
