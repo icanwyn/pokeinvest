@@ -75,12 +75,14 @@ export function PokemonCard({
   };
 
   return (
-    <div className="poke-card-wrap">
+    <div
+      className="poke-card-wrap"
+      ref={cardRef}
+      onMouseEnter={handleCardMouseEnter}
+    >
       <div
-        ref={cardRef}
         className={`poke-card ${rarity.borderClass} ${selected ? "selected" : ""}`}
         onClick={onSelect}
-        onMouseEnter={handleCardMouseEnter}
         style={{ "--type-color": card.typeColor } as React.CSSProperties}
       >
 
@@ -155,12 +157,13 @@ export function PokemonCard({
           </button>
         )}
 
-        <CardHoverInfo
-          card={card}
-          quantity={isWatchlist ? 0 : quantity}
-          placement={hoverPlacement}
-        />
       </div>
+
+      <CardHoverInfo
+        card={card}
+        quantity={isWatchlist ? 0 : quantity}
+        placement={hoverPlacement}
+      />
 
       {isWatchlist ? (
         <div className="card-watchlist-chip">

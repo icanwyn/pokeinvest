@@ -40,6 +40,10 @@ export function CardHoverInfo({
   const hpNote = card.healthHpNote ?? HEALTH_HP_EXPLANATION;
   const tktStat = findPeStat(card.stats);
   const displayTkt = formatPeDisplay(tktStat?.value ?? "—");
+  const companyLabel = card.companyName?.trim() || card.ticker;
+  const description =
+    card.description?.trim() ||
+    `${companyLabel} — ${card.sector || "public"} company. Tap the card for full details.`;
 
   return (
     <div
@@ -47,11 +51,11 @@ export function CardHoverInfo({
       role="tooltip"
     >
       <div className="hover-info-header">
-        <strong>{card.companyName}</strong>
+        <strong>{companyLabel}</strong>
         <span className="hover-ticker">{card.ticker}</span>
       </div>
 
-      <p className="hover-desc">{card.description}</p>
+      <p className="hover-desc">{description}</p>
 
       <div className="hover-meta-row">
         <span style={{ color: card.typeColor }}>

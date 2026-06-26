@@ -1457,7 +1457,7 @@ body {
   z-index: 1;
 }
 
-.poke-card-wrap:has(.poke-card:hover) {
+.poke-card-wrap:hover {
   z-index: 100;
 }
 
@@ -1494,7 +1494,7 @@ body {
   outline-offset: 2px;
 }
 
-.poke-card:hover .card-hover-info {
+.poke-card-wrap:hover .card-hover-info {
   opacity: 1;
   visibility: visible;
 }
@@ -1827,11 +1827,11 @@ body {
 }
 
 .card-hover-info--above {
-  bottom: calc(100% + 10px);
+  bottom: calc(100% - 8px);
   transform: translateX(-50%) translateY(6px);
 }
 
-.poke-card:hover .card-hover-info--above {
+.poke-card-wrap:hover .card-hover-info--above {
   transform: translateX(-50%) translateY(0);
 }
 
@@ -1846,12 +1846,12 @@ body {
 }
 
 .card-hover-info--below {
-  top: calc(100% + 10px);
+  top: calc(100% + 4px);
   bottom: auto;
   transform: translateX(-50%) translateY(-6px);
 }
 
-.poke-card:hover .card-hover-info--below {
+.poke-card-wrap:hover .card-hover-info--below {
   transform: translateX(-50%) translateY(0);
 }
 
