@@ -4,6 +4,8 @@ import type { PokemonType } from "@/types/card";
 export interface DiscoverableCompany {
   ticker: string;
   name: string;
+  sector: string;
+  subIndustry: string;
   hint: string;
   pokemonType: PokemonType;
   emoji: string;
@@ -13,6 +15,8 @@ export interface DiscoverableCompany {
 export const DISCOVERY_POOL: DiscoverableCompany[] = SP500_COMPANIES.map((c) => ({
   ticker: c.ticker,
   name: c.name,
+  sector: c.sector,
+  subIndustry: c.subIndustry,
   hint: c.hint,
   pokemonType: c.pokemonType,
   emoji: c.emoji,

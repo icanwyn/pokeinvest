@@ -7,6 +7,8 @@ export interface InterestFilter {
   emoji: string;
   blurb: string;
   keywords: string[];
+  /** Kid-famous tickers always shown first when they match this interest. */
+  featuredTickers?: string[];
 }
 
 /** Kid-friendly “what do you like?” filters — no ticker knowledge needed. */
@@ -44,7 +46,20 @@ export const INTEREST_FILTERS: InterestFilter[] = [
     label: "Cars & Rides",
     emoji: "🚗",
     blurb: "Cars, trucks, and electric vehicles",
-    keywords: ["automotive", "vehicle", "motor", "auto", "electric", "transport"],
+    keywords: [
+      "automotive",
+      "automobile",
+      "vehicle",
+      "motor",
+      "auto",
+      "electric",
+      "transport",
+      "tesla",
+      "ford",
+      "truck",
+      "car",
+    ],
+    featuredTickers: ["TSLA", "F", "GM", "APTV", "AZO", "ORLY"],
   },
   {
     id: "shopping",
@@ -143,7 +158,12 @@ export const POWER_PACKS: PowerPack[] = [
 ];
 
 function companyHaystack(c: DiscoverableCompany): string {
-  return `${c.name} ${c.hint} ${c.ticker}`.toLowerCase();
+  return `${c.name} ${c.sector} ${c.subIndustry} ${c.hint} ${c.ticker}`.toLowerCase();
+}
+
+function matchesInterest(c: DiscoverableCompany, interest: InterestFilter): boolean {
+  const hay = companyHaystack(c);
+  return interest.keywords.some((kw) => hay.includes(kw));
 }
 
 export function filterByInterest(
@@ -155,14 +175,23 @@ export function filterByInterest(
   if (!interest) return [];
 
   const owned = new Set(ownedTickers.map((t) => t.toUpperCase()));
+  const byTicker = new Map(DISCOVERY_POOL.map((c) => [c.ticker, c]));
+
+  const featured = (interest.featuredTickers ?? [])
+    .map((t) => byTicker.get(t))
+    .filter(
+      (c): c is DiscoverableCompany =>
+        !!c && !owned.has(c.ticker) && matchesInterest(c, interest)
+    );
+
+  const featuredSet = new Set(featured.map((c) => c.ticker));
   const pool = DISCOVERY_POOL.filter((c) => !owned.has(c.ticker));
-  const matches = pool.filter((c) => {
-    const hay = companyHaystack(c);
-    return interest.keywords.some((kw) => hay.includes(kw));
-  });
+  const matches = pool.filter(
+    (c) => !featuredSet.has(c.ticker) && matchesInterest(c, interest)
+  );
 
   const shuffled = [...matches].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, limit);
+  return [...featured, ...shuffled].slice(0, limit);
 }
 
 export function getRarityPackCompanies(
