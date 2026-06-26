@@ -53,11 +53,33 @@ function ensurePrismaEnv() {
 
 const mode = process.argv[2] ?? "generate";
 
+function runProduction() {
+  execSync("npx prisma generate", { stdio: "inherit", env: process.env });
+  try {
+    execSync("npx prisma migrate deploy", { stdio: "inherit", env: process.env });
+  } catch {
+    console.warn(
+      "migrate deploy skipped (common on Supabase) — syncing schema with db push instead."
+    );
+    execSync("npx prisma db push --skip-generate", {
+      stdio: "inherit",
+      env: process.env,
+    });
+  }
+  execSync("next build", { stdio: "inherit", env: process.env });
+}
+
 const commands = {
   generate: "npx prisma generate",
   build: "npx prisma generate && next build",
-  production: "npx prisma generate && npx prisma migrate deploy && next build",
 };
+
+ensurePrismaEnv();
+
+if (mode === "production") {
+  runProduction();
+  process.exit(0);
+}
 
 const command = commands[mode];
 if (!command) {
@@ -65,5 +87,4 @@ if (!command) {
   process.exit(1);
 }
 
-ensurePrismaEnv();
 execSync(command, { stdio: "inherit", env: process.env });
