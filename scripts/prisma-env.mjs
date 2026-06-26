@@ -1,5 +1,5 @@
 import { execSync } from "node:child_process";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 function loadDotEnv() {
@@ -28,6 +28,10 @@ function loadDotEnv() {
   }
 }
 
+function quoteEnv(value) {
+  return `"${value.replace(/\\/g, "\\\\").replace(/"/g, '\\"')}"`;
+}
+
 function ensurePrismaEnv() {
   loadDotEnv();
 
@@ -37,12 +41,14 @@ function ensurePrismaEnv() {
     process.exit(1);
   }
 
-  if (!process.env.DIRECT_URL?.trim()) {
-    process.env.DIRECT_URL = databaseUrl;
-    console.warn(
-      "Warning: DIRECT_URL not set — using DATABASE_URL. For Supabase, add the direct (port 5432) connection string as DIRECT_URL in Vercel."
-    );
-  }
+  process.env.DATABASE_URL = databaseUrl;
+
+  // Prisma reads .env from disk during schema validation — write it explicitly for Vercel.
+  writeFileSync(
+    resolve(process.cwd(), ".env"),
+    `DATABASE_URL=${quoteEnv(databaseUrl)}\n`,
+    "utf8"
+  );
 }
 
 const mode = process.argv[2] ?? "generate";
