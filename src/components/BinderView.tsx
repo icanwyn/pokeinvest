@@ -98,7 +98,7 @@ export function BinderView({
           <p className="pi-hero__subtitle">
             {isWatchlist
               ? "Study cards on your watchlist — catch when you're ready to own"
-              : "Stocks you've caught and own in your portfolio"}
+              : "Your caught cards — stocks you own in your binder"}
           </p>
         </div>
         <input
@@ -113,22 +113,22 @@ export function BinderView({
       <div className="pi-binder__tabs">
         <button
           type="button"
+          className={`pi-binder__tab ${binderTab === "portfolio" ? "pi-binder__tab--active" : ""}`}
+          onClick={() => onBinderTabChange("portfolio")}
+        >
+          🃏 My Binder
+          {portfolioCount > 0 && (
+            <span className="pi-binder__tab-count">{portfolioCount}</span>
+          )}
+        </button>
+        <button
+          type="button"
           className={`pi-binder__tab ${binderTab === "watchlist" ? "pi-binder__tab--active" : ""}`}
           onClick={() => onBinderTabChange("watchlist")}
         >
           👀 Watchlist
           {watchlistCount > 0 && (
             <span className="pi-binder__tab-count">{watchlistCount}</span>
-          )}
-        </button>
-        <button
-          type="button"
-          className={`pi-binder__tab ${binderTab === "portfolio" ? "pi-binder__tab--active" : ""}`}
-          onClick={() => onBinderTabChange("portfolio")}
-        >
-          🎯 My Catches
-          {portfolioCount > 0 && (
-            <span className="pi-binder__tab-count">{portfolioCount}</span>
           )}
         </button>
       </div>

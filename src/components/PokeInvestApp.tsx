@@ -40,7 +40,7 @@ export function PokeInvestApp() {
   const [celebrate, setCelebrate] = useState<string | null>(null);
   const [selectedTicker, setSelectedTicker] = useState<string | null>(null);
   const [activeView, setActiveView] = useState<AppView>("binder");
-  const [binderTab, setBinderTab] = useState<BinderTab>("watchlist");
+  const [binderTab, setBinderTab] = useState<BinderTab>("portfolio");
   const [sortKey, setSortKey] = useState<SortKey>("value");
   const [groupKey, setGroupKey] = useState<GroupKey>("none");
   const [binderSearch, setBinderSearch] = useState("");
