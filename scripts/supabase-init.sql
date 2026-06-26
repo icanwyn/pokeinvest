@@ -1,5 +1,10 @@
--- Run once in Supabase: SQL Editor → New query → paste → Run
--- Creates all tables PokeInvest needs (safe to run if tables already exist).
+-- POKEINVEST DATABASE SETUP (run in Supabase SQL Editor)
+-- 1. Click "New query" so the editor is completely empty
+-- 2. Paste ONLY this file (nothing else)
+-- 3. Click Run
+--
+-- If you see an error about "techs", you accidentally ran other SQL.
+-- Start a brand-new query and try again.
 
 CREATE TABLE IF NOT EXISTS "User" (
     "id" TEXT NOT NULL,
@@ -73,31 +78,3 @@ CREATE UNIQUE INDEX IF NOT EXISTS "Holding_userId_ticker_key" ON "Holding"("user
 CREATE UNIQUE INDEX IF NOT EXISTS "WatchlistItem_userId_ticker_key" ON "WatchlistItem"("userId", "ticker");
 CREATE UNIQUE INDEX IF NOT EXISTS "League_inviteCode_key" ON "League"("inviteCode");
 CREATE UNIQUE INDEX IF NOT EXISTS "LeagueMember_leagueId_userId_key" ON "LeagueMember"("leagueId", "userId");
-
-DO $$ BEGIN
-  ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
-
-DO $$ BEGIN
-  ALTER TABLE "LessonProgress" ADD CONSTRAINT "LessonProgress_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
-
-DO $$ BEGIN
-  ALTER TABLE "Holding" ADD CONSTRAINT "Holding_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
-
-DO $$ BEGIN
-  ALTER TABLE "WatchlistItem" ADD CONSTRAINT "WatchlistItem_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
-
-DO $$ BEGIN
-  ALTER TABLE "League" ADD CONSTRAINT "League_createdById_fkey" FOREIGN KEY ("createdById") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
-
-DO $$ BEGIN
-  ALTER TABLE "LeagueMember" ADD CONSTRAINT "LeagueMember_leagueId_fkey" FOREIGN KEY ("leagueId") REFERENCES "League"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
-
-DO $$ BEGIN
-  ALTER TABLE "LeagueMember" ADD CONSTRAINT "LeagueMember_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-EXCEPTION WHEN duplicate_object THEN NULL; END $$;
