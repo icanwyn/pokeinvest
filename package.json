@@ -8,7 +8,7 @@
     "build:production": "node scripts/prisma-env.mjs production",
     "start": "next start",
     "lint": "eslint",
-    "postinstall": "node scripts/prisma-env.mjs generate",
+    "postinstall": "node scripts/prisma-env.mjs generate || true",
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "vercel": "vercel",

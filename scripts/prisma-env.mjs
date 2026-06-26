@@ -54,18 +54,9 @@ function ensurePrismaEnv() {
 const mode = process.argv[2] ?? "generate";
 
 function runProduction() {
+  // Do not run migrations during Vercel build — Supabase poolers often block it.
+  // Create tables once with scripts/supabase-init.sql in the Supabase SQL Editor.
   execSync("npx prisma generate", { stdio: "inherit", env: process.env });
-  try {
-    execSync("npx prisma migrate deploy", { stdio: "inherit", env: process.env });
-  } catch {
-    console.warn(
-      "migrate deploy skipped (common on Supabase) — syncing schema with db push instead."
-    );
-    execSync("npx prisma db push --skip-generate", {
-      stdio: "inherit",
-      env: process.env,
-    });
-  }
   execSync("next build", { stdio: "inherit", env: process.env });
 }
 
