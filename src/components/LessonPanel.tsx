@@ -6,8 +6,9 @@ import {
   getManualModules,
   LESSON_CASH_REWARD,
   MANUAL_LESSONS,
-  QUIZ_QUESTIONS_PER_LESSON,
-  XP_PER_CORRECT,
+  maxLessonXp,
+  passNeed,
+  quizPerfect,
   type ManualLesson,
   isLessonUnlocked,
 } from "@/lib/manual-lessons";
@@ -30,7 +31,8 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
     [user.lessonProgress]
   );
   const lessonsDone = user.completedLessons.length;
-  const maxLessonXp = QUIZ_QUESTIONS_PER_LESSON * XP_PER_CORRECT;
+  const fullXp = maxLessonXp();
+  const needPass = passNeed(10);
 
   const handleComplete = async (wrongCount: number, total: number) => {
     if (!activeLesson) return;
@@ -54,16 +56,24 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
 
     onUserUpdate(data.user);
 
-    if (data.cashAwarded > 0) {
+    if (data.cashAwarded > 0 && data.perfect) {
       onCelebrate?.(
-        `✅ ${activeLesson.title} — +$${data.cashAwarded} & +${data.xpAwarded} XP!`
+        `⭐ Perfect Ace! ${activeLesson.title} — +$${data.cashAwarded} & +${data.xpAwarded} XP!`
+      );
+    } else if (data.cashAwarded > 0) {
+      onCelebrate?.(
+        `✅ ${activeLesson.title} passed — +$${data.cashAwarded} & +${data.xpAwarded} XP. Retake for ${fullXp} XP!`
+      );
+    } else if (data.improved && data.perfect) {
+      onCelebrate?.(
+        `⭐ Perfect Ace! ${activeLesson.title} — +${data.xpAwarded} XP (${fullXp} full credit!)`
       );
     } else if (data.improved) {
       onCelebrate?.(
-        `📈 ${activeLesson.title} — score improved! +${data.xpAwarded} XP (${data.correct}/${data.totalQuestions})`
+        `📈 ${activeLesson.title} — +${data.xpAwarded} XP (${data.correct}/${data.totalQuestions}). Keep going for ${fullXp}!`
       );
     } else if (data.alreadyDone) {
-      onCelebrate?.(`Great review of ${activeLesson.title} — same best score!`);
+      onCelebrate?.(`Great practice on ${activeLesson.title}!`);
     }
 
     setActiveLesson(null);
@@ -75,14 +85,14 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
         <div>
           <h2 className="manual-lessons-title">📖 Training Manual</h2>
           <p className="manual-lessons-sub">
-            Lessons unlock in order. Pass each quiz ({Math.ceil(QUIZ_QUESTIONS_PER_LESSON * 0.7)}/
-            {QUIZ_QUESTIONS_PER_LESSON} correct) to earn <strong>${LESSON_CASH_REWARD}</strong> and up
-            to <strong>{maxLessonXp} XP</strong> (+{XP_PER_CORRECT} XP per right answer). Retake
-            aced lessons — questions shuffle for a higher score!
+            Tap a lesson — learn in <strong>quick bites</strong>, then take the quiz. Pass with{" "}
+            <strong>{needPass}/10</strong> to unlock the next lesson (+${LESSON_CASH_REWARD}). Score{" "}
+            <strong>10/10</strong> for <strong>Perfect Ace</strong> and full <strong>{fullXp} XP</strong>.
+            Miss a question? We re-teach before you move on.
           </p>
         </div>
         <div className="manual-lessons-stats">
-          <span>{lessonsDone}/{MANUAL_LESSONS.length} aced</span>
+          <span>{lessonsDone}/{MANUAL_LESSONS.length} passed</span>
           <span>{user.xp} XP</span>
         </div>
       </div>
@@ -95,27 +105,31 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
           <div className="manual-lesson-grid">
             {mod.lessons.map((lesson) => {
               const idx = MANUAL_LESSONS.findIndex((l) => l.id === lesson.id);
+              const progress = progressByLesson.get(lesson.id);
               const isDone = completedSet.has(lesson.id);
+              const isPerfect = progress ? quizPerfect(progress.wrongCount) : false;
               const unlocked = isLessonUnlocked(lesson.id, completedSet);
 
               return (
                 <button
                   key={lesson.id}
                   type="button"
-                  className={`manual-lesson-card ${isDone ? "done" : ""} ${!unlocked ? "locked" : ""}`}
+                  className={`manual-lesson-card ${isDone ? "done" : ""} ${isPerfect ? "perfect" : ""} ${!unlocked ? "locked" : ""}`}
                   disabled={!unlocked}
                   onClick={() => unlocked && setActiveLesson(lesson)}
                 >
                   <span className="manual-lesson-emoji">
-                    {isDone ? "✅" : unlocked ? lesson.emoji : "🔒"}
+                    {isPerfect ? "⭐" : isDone ? "✅" : unlocked ? lesson.emoji : "🔒"}
                   </span>
                   <span className="manual-lesson-name">{lesson.title}</span>
                   <span className="manual-lesson-reward">
-                    {isDone
-                      ? "Aced · retake for more XP"
-                      : unlocked
-                        ? `+$${LESSON_CASH_REWARD} · up to ${maxLessonXp} XP`
-                        : "Locked"}
+                    {isPerfect
+                      ? `Perfect · ${fullXp} XP`
+                      : isDone
+                        ? "Passed · retake for ⭐"
+                        : unlocked
+                          ? `+$${LESSON_CASH_REWARD} · up to ${fullXp} XP`
+                          : "Locked"}
                   </span>
                   <span className="manual-lesson-order">#{idx + 1}</span>
                 </button>

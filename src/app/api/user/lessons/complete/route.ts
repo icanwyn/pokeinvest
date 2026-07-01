@@ -5,8 +5,11 @@ import {
   getLessonById,
   isLessonUnlocked,
   LESSON_CASH_REWARD,
+  maxLessonXp,
+  passNeed,
   quizCorrectCount,
   quizPassed,
+  quizPerfect,
   xpForCorrectCount,
 } from "@/lib/manual-lessons";
 import { loadUserBundle } from "@/lib/user-data";
@@ -36,21 +39,29 @@ export async function POST(request: Request) {
   }
 
   if (!quizPassed(wrongCount, totalQuestions)) {
-    const need = Math.ceil(totalQuestions * 0.7);
+    const need = passNeed(totalQuestions);
     return NextResponse.json(
       {
-        error: `Need at least ${need}/${totalQuestions} correct to pass. Retake the quiz — questions shuffle each time!`,
+        error: `Need at least ${need}/${totalQuestions} correct to pass. Review the tips and try again!`,
       },
       { status: 400 }
     );
   }
 
   const correct = quizCorrectCount(wrongCount, totalQuestions);
+  const perfect = quizPerfect(wrongCount);
+  const fullXp = maxLessonXp();
   const prevCorrect = prior ? quizCorrectCount(prior.wrongCount, totalQuestions) : 0;
+  const prevPerfect = prior ? quizPerfect(prior.wrongCount) : false;
+
   const xpAwarded = Math.max(0, xpForCorrectCount(correct) - xpForCorrectCount(prevCorrect));
+  const improved = !prior ? false : correct > prevCorrect || (perfect && !prevPerfect);
 
   let cashAwarded = 0;
   const firstPass = !prior;
+
+  const shouldUpdate =
+    firstPass || correct > prevCorrect || (perfect && prior.wrongCount > 0);
 
   if (firstPass) {
     cashAwarded = LESSON_CASH_REWARD;
@@ -66,7 +77,7 @@ export async function POST(request: Request) {
         },
       }),
     ]);
-  } else if (correct > prevCorrect) {
+  } else if (shouldUpdate) {
     await prisma.$transaction([
       prisma.lessonProgress.update({
         where: { userId_lessonId: { userId: user.id, lessonId } },
@@ -86,7 +97,10 @@ export async function POST(request: Request) {
     xpAwarded: firstPass ? xpForCorrectCount(correct) : xpAwarded,
     correct,
     totalQuestions,
-    improved: !firstPass && correct > prevCorrect,
+    perfect,
+    hasFullCredit: perfect,
+    fullXp,
+    improved,
     alreadyDone: !firstPass,
   });
 }

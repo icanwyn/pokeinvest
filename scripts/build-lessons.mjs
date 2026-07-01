@@ -1,3 +1,4 @@
+import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -26,3 +27,5 @@ for (const lesson of lessons) {
 
 fs.writeFileSync(out, JSON.stringify(lessons, null, 2) + "\n");
 console.log(`Wrote ${lessons.length} lessons (${QUESTIONS} questions each) to ${out}`);
+
+execSync("node scripts/chunkify-lessons.mjs", { cwd: path.join(__dirname, ".."), stdio: "inherit" });
