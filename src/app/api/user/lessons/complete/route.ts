@@ -5,7 +5,9 @@ import {
   getLessonById,
   isLessonUnlocked,
   LESSON_CASH_REWARD,
+  quizCorrectCount,
   quizPassed,
+  xpForCorrectCount,
 } from "@/lib/manual-lessons";
 import { loadUserBundle } from "@/lib/user-data";
 
@@ -27,25 +29,31 @@ export async function POST(request: Request) {
     where: { userId: user.id },
   });
   const completedIds = existingProgress.map((p) => p.lessonId);
+  const prior = existingProgress.find((p) => p.lessonId === lessonId);
 
-  if (!isLessonUnlocked(lessonId, completedIds)) {
+  if (!isLessonUnlocked(lessonId, completedIds) && !prior) {
     return NextResponse.json({ error: "Complete the previous lesson first" }, { status: 400 });
   }
 
   if (!quizPassed(wrongCount, totalQuestions)) {
+    const need = Math.ceil(totalQuestions * 0.7);
     return NextResponse.json(
-      { error: "Quiz not passed — get every question right to unlock and earn $100!" },
+      {
+        error: `Need at least ${need}/${totalQuestions} correct to pass. Retake the quiz — questions shuffle each time!`,
+      },
       { status: 400 }
     );
   }
 
-  const alreadyDone = completedIds.includes(lessonId);
-  let cashAwarded = 0;
-  let xpAwarded = 0;
+  const correct = quizCorrectCount(wrongCount, totalQuestions);
+  const prevCorrect = prior ? quizCorrectCount(prior.wrongCount, totalQuestions) : 0;
+  const xpAwarded = Math.max(0, xpForCorrectCount(correct) - xpForCorrectCount(prevCorrect));
 
-  if (!alreadyDone) {
+  let cashAwarded = 0;
+  const firstPass = !prior;
+
+  if (firstPass) {
     cashAwarded = LESSON_CASH_REWARD;
-    xpAwarded = lesson.xp;
     await prisma.$transaction([
       prisma.lessonProgress.create({
         data: { userId: user.id, lessonId, wrongCount },
@@ -54,8 +62,19 @@ export async function POST(request: Request) {
         where: { id: user.id },
         data: {
           cashBalance: { increment: cashAwarded },
-          xp: { increment: xpAwarded },
+          xp: { increment: xpForCorrectCount(correct) },
         },
+      }),
+    ]);
+  } else if (correct > prevCorrect) {
+    await prisma.$transaction([
+      prisma.lessonProgress.update({
+        where: { userId_lessonId: { userId: user.id, lessonId } },
+        data: { wrongCount },
+      }),
+      prisma.user.update({
+        where: { id: user.id },
+        data: { xp: { increment: xpAwarded } },
       }),
     ]);
   }
@@ -64,7 +83,10 @@ export async function POST(request: Request) {
   return NextResponse.json({
     user: bundle,
     cashAwarded,
-    xpAwarded,
-    alreadyDone,
+    xpAwarded: firstPass ? xpForCorrectCount(correct) : xpAwarded,
+    correct,
+    totalQuestions,
+    improved: !firstPass && correct > prevCorrect,
+    alreadyDone: !firstPass,
   });
 }

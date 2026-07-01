@@ -6,6 +6,8 @@ import {
   getManualModules,
   LESSON_CASH_REWARD,
   MANUAL_LESSONS,
+  QUIZ_QUESTIONS_PER_LESSON,
+  XP_PER_CORRECT,
   type ManualLesson,
   isLessonUnlocked,
 } from "@/lib/manual-lessons";
@@ -23,7 +25,12 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
 
   const modules = useMemo(() => getManualModules(), []);
   const completedSet = useMemo(() => new Set(user.completedLessons), [user.completedLessons]);
+  const progressByLesson = useMemo(
+    () => new Map(user.lessonProgress.map((p) => [p.lessonId, p])),
+    [user.lessonProgress]
+  );
   const lessonsDone = user.completedLessons.length;
+  const maxLessonXp = QUIZ_QUESTIONS_PER_LESSON * XP_PER_CORRECT;
 
   const handleComplete = async (wrongCount: number, total: number) => {
     if (!activeLesson) return;
@@ -51,8 +58,12 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
       onCelebrate?.(
         `✅ ${activeLesson.title} — +$${data.cashAwarded} & +${data.xpAwarded} XP!`
       );
+    } else if (data.improved) {
+      onCelebrate?.(
+        `📈 ${activeLesson.title} — score improved! +${data.xpAwarded} XP (${data.correct}/${data.totalQuestions})`
+      );
     } else if (data.alreadyDone) {
-      onCelebrate?.(`Already aced ${activeLesson.title} — great review!`);
+      onCelebrate?.(`Great review of ${activeLesson.title} — same best score!`);
     }
 
     setActiveLesson(null);
@@ -64,8 +75,10 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
         <div>
           <h2 className="manual-lessons-title">📖 Training Manual</h2>
           <p className="manual-lessons-sub">
-            Lessons unlock in order. Ace each quiz to earn <strong>${LESSON_CASH_REWARD}</strong> and
-            XP. Finish all {MANUAL_LESSONS.length} to become an Investing Champion!
+            Lessons unlock in order. Pass each quiz ({Math.ceil(QUIZ_QUESTIONS_PER_LESSON * 0.7)}/
+            {QUIZ_QUESTIONS_PER_LESSON} correct) to earn <strong>${LESSON_CASH_REWARD}</strong> and up
+            to <strong>{maxLessonXp} XP</strong> (+{XP_PER_CORRECT} XP per right answer). Retake
+            aced lessons — questions shuffle for a higher score!
           </p>
         </div>
         <div className="manual-lessons-stats">
@@ -98,7 +111,11 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
                   </span>
                   <span className="manual-lesson-name">{lesson.title}</span>
                   <span className="manual-lesson-reward">
-                    {isDone ? "Aced" : unlocked ? `+$${LESSON_CASH_REWARD} · ${lesson.xp} XP` : "Locked"}
+                    {isDone
+                      ? "Aced · retake for more XP"
+                      : unlocked
+                        ? `+$${LESSON_CASH_REWARD} · up to ${maxLessonXp} XP`
+                        : "Locked"}
                   </span>
                   <span className="manual-lesson-order">#{idx + 1}</span>
                 </button>
@@ -112,6 +129,7 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
         <LessonQuizModal
           lesson={activeLesson}
           alreadyDone={completedSet.has(activeLesson.id)}
+          bestWrongCount={progressByLesson.get(activeLesson.id)?.wrongCount}
           onClose={() => {
             setActiveLesson(null);
             setError(null);

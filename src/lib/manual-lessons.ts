@@ -21,8 +21,20 @@ export const MANUAL_LESSONS = lessonsJson as ManualLesson[];
 
 export const STARTING_CASH = 1000;
 export const LESSON_CASH_REWARD = 100;
-/** Fraction of quiz questions that must be correct to unlock + earn cash (1 = 100%). */
-export const PASS_THRESHOLD = 1;
+export const QUIZ_QUESTIONS_PER_LESSON = 10;
+/** XP earned for each correct answer (10 questions × 10 = 100 XP max per lesson). */
+export const XP_PER_CORRECT = 10;
+/** Fraction of quiz questions that must be correct to pass (0.7 = 7/10). */
+export const PASS_THRESHOLD = 0.7;
+
+export function shuffleIndices(length: number): number[] {
+  const order = Array.from({ length }, (_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+}
 
 export interface ManualModule {
   name: string;
@@ -56,7 +68,14 @@ export function isLessonUnlocked(
   return done.has(MANUAL_LESSONS[idx - 1].id);
 }
 
+export function quizCorrectCount(wrongCount: number, total: number): number {
+  return Math.max(0, total - wrongCount);
+}
+
 export function quizPassed(wrongCount: number, total: number): boolean {
-  const correct = total - wrongCount;
-  return correct >= Math.ceil(total * PASS_THRESHOLD);
+  return quizCorrectCount(wrongCount, total) >= Math.ceil(total * PASS_THRESHOLD);
+}
+
+export function xpForCorrectCount(correct: number): number {
+  return correct * XP_PER_CORRECT;
 }
