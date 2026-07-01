@@ -46,7 +46,6 @@ export function LessonQuizModal({
 
   const qIndex = questionOrder[qi] ?? qi;
   const q = quizQuestions[qIndex];
-  const correctSoFar = qi - wrongCount + (picked !== null && picked === q?.correct ? 1 : 0);
   const chunk = chunks[chunkIdx];
 
   const beginQuiz = useCallback(() => {
@@ -120,7 +119,7 @@ export function LessonQuizModal({
             <div className="lesson-modal-reward-pills">
               <span className="lesson-pill cash">+${LESSON_CASH_REWARD}</span>
               <span className="lesson-pill xp">up to {fullXp} XP</span>
-              <span className="lesson-pill perfect">⭐ 10/10 = full XP</span>
+              <span className="lesson-pill perfect">⭐ 10/10 = max XP</span>
             </div>
           </div>
         </header>
@@ -129,7 +128,7 @@ export function LessonQuizModal({
           <section className="lesson-learn">
             <div className="lesson-learn-progress">
               <span>
-                Tip {chunkIdx + 1} of {chunks.length}
+                Step {chunkIdx + 1} of {chunks.length}
               </span>
               <div className="lesson-dots">
                 {chunks.map((_, i) => (
@@ -156,11 +155,11 @@ export function LessonQuizModal({
               )}
               {chunkIdx + 1 < chunks.length ? (
                 <button type="button" className="lesson-btn-primary" onClick={() => setChunkIdx(chunkIdx + 1)}>
-                  Got it! →
+                  OK, next →
                 </button>
               ) : (
                 <button type="button" className="lesson-btn-primary" onClick={() => setPhase("ready")}>
-                  I&apos;m ready! →
+                  Ready for quiz →
                 </button>
               )}
             </div>
@@ -174,20 +173,20 @@ export function LessonQuizModal({
               <h4>Quiz time!</h4>
               <ul className="lesson-ready-rules">
                 <li>
-                  <strong>{totalQuestions}</strong> questions — shuffled each try
+                  <strong>{totalQuestions}</strong> questions (mixed up each try)
                 </li>
                 <li>
-                  Need <strong>{needToPass}/{totalQuestions}</strong> to pass
+                  Get <strong>{needToPass}</strong> right to pass
                 </li>
                 <li>
-                  <strong>10/10</strong> = Perfect Ace + full <strong>{fullXp} XP</strong>
+                  Get <strong>10/10</strong> for a ⭐ Super Star + <strong>{fullXp} XP</strong>
                 </li>
-                <li>Miss one? We&apos;ll re-teach, then keep going</li>
+                <li>Get one wrong? We&apos;ll explain it, then you keep going</li>
               </ul>
               {alreadyDone && bestCorrect !== null && (
                 <p className="lesson-ready-best">
-                  Best: {bestCorrect}/{totalQuestions}
-                  {bestCorrect < totalQuestions && " — retake for full XP!"}
+                  Your best: {bestCorrect}/{totalQuestions}
+                  {bestCorrect < totalQuestions && " — try again for max XP!"}
                 </p>
               )}
             </div>
@@ -195,7 +194,7 @@ export function LessonQuizModal({
               {alreadyDone ? "Retake quiz 🎲" : "Start quiz 🎯"}
             </button>
             <button type="button" className="lesson-btn-ghost" onClick={restartLearn}>
-              Review tips again
+              Read steps again
             </button>
           </section>
         )}
@@ -211,7 +210,7 @@ export function LessonQuizModal({
               </div>
               <div className="lesson-quiz-meta">
                 <span>Q {qi + 1}/{totalQuestions}</span>
-                <span className="lesson-xp-live">+{XP_PER_CORRECT} XP each ✓</span>
+                <span className="lesson-xp-live">+{XP_PER_CORRECT} XP per ✓</span>
               </div>
             </div>
 
@@ -241,10 +240,10 @@ export function LessonQuizModal({
 
             {picked !== null && (
               <div className={`lesson-q-feedback ${picked === q.correct ? "ok" : "no"}`}>
-                <b>{picked === q.correct ? `Nice! +${XP_PER_CORRECT} XP ⚡` : "Oops — let's learn this!"}</b>
-                <p>{picked === q.correct ? q.why : "Tap below — we'll explain it quick."}</p>
+                <b>{picked === q.correct ? `Yes! +${XP_PER_CORRECT} XP ⚡` : "Not quite — let's learn it!"}</b>
+                <p>{picked === q.correct ? q.why : "Tap below and we'll make it easy."}</p>
                 <button type="button" className="lesson-btn-primary" onClick={afterFeedback}>
-                  {picked === q.correct ? "Next →" : "Show me →"}
+                  {picked === q.correct ? "Next →" : "Teach me →"}
                 </button>
               </div>
             )}
@@ -253,7 +252,7 @@ export function LessonQuizModal({
 
         {phase === "reteach" && q && (
           <section className="lesson-reteach">
-            <div className="lesson-reteach-badge">📚 Quick re-teach</div>
+            <div className="lesson-reteach-badge">📚 Let&apos;s learn it</div>
             <div className="lesson-scene-card reteach">
               <div className="lesson-scene-visual small" aria-hidden>
                 {lesson.emoji}
@@ -264,10 +263,10 @@ export function LessonQuizModal({
               </div>
             </div>
             <p className="lesson-reteach-encourage">
-              No stress — mistakes help your brain grow. You&apos;ve got this!
+              It&apos;s OK to miss one! That&apos;s how you learn. You got this!
             </p>
             <button type="button" className="lesson-btn-primary" onClick={goNextQuestion}>
-              Got it — next question →
+              OK — next question →
             </button>
           </section>
         )}
@@ -275,7 +274,7 @@ export function LessonQuizModal({
         {phase === "results" && (
           <section className="lesson-results">
             <div className={`lesson-results-badge ${isPerfect ? "perfect" : passed ? "pass" : "fail"}`}>
-              {isPerfect ? "⭐ Perfect Ace!" : passed ? "✅ Passed!" : "📖 Keep practicing"}
+              {isPerfect ? "⭐ Super Star!" : passed ? "✅ You passed!" : "📖 Try again!"}
             </div>
 
             <div className="lesson-score-ring">
@@ -299,18 +298,18 @@ export function LessonQuizModal({
               )}
               <div className={`lesson-reward-line xp ${isPerfect ? "full" : "partial"}`}>
                 <span>⚡</span> {xpEarned} XP
-                {isPerfect ? " — full credit!" : ` — retake for ${fullXp} XP`}
+                {isPerfect ? " — max XP!" : ` — try again for ${fullXp} XP`}
               </div>
             </div>
 
             {!passed && (
               <p className="lesson-results-hint">
-                Need {needToPass} correct to pass. Review tips and try again!
+                You need {needToPass} right to pass. Read the steps again!
               </p>
             )}
             {passed && !isPerfect && (
               <p className="lesson-results-hint">
-                You passed! Retake anytime — questions shuffle — for Perfect Ace ({fullXp} XP).
+                You passed! Try again for a ⭐ Super Star and {fullXp} XP.
               </p>
             )}
 
@@ -322,12 +321,12 @@ export function LessonQuizModal({
                   onClick={claimRewards}
                   disabled={submitting}
                 >
-                  {submitting ? "Saving…" : "Claim rewards 🎁"}
+                  {submitting ? "Saving…" : "Get my rewards 🎁"}
                 </button>
               ) : (
                 <>
                   <button type="button" className="lesson-btn-primary" onClick={restartLearn}>
-                    Review tips
+                    Read steps again
                   </button>
                   <button type="button" className="lesson-btn-ghost" onClick={beginQuiz}>
                     Try again 🎲

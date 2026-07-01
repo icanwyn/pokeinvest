@@ -58,22 +58,22 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
 
     if (data.cashAwarded > 0 && data.perfect) {
       onCelebrate?.(
-        `⭐ Perfect Ace! ${activeLesson.title} — +$${data.cashAwarded} & +${data.xpAwarded} XP!`
+        `⭐ Super Star! ${activeLesson.title} — +$${data.cashAwarded} & +${data.xpAwarded} XP!`
       );
     } else if (data.cashAwarded > 0) {
       onCelebrate?.(
-        `✅ ${activeLesson.title} passed — +$${data.cashAwarded} & +${data.xpAwarded} XP. Retake for ${fullXp} XP!`
+        `✅ ${activeLesson.title} — +$${data.cashAwarded} & +${data.xpAwarded} XP. Try again for ${fullXp} XP!`
       );
     } else if (data.improved && data.perfect) {
       onCelebrate?.(
-        `⭐ Perfect Ace! ${activeLesson.title} — +${data.xpAwarded} XP (${fullXp} full credit!)`
+        `⭐ Super Star! ${activeLesson.title} — +${data.xpAwarded} XP (max ${fullXp}!)`
       );
     } else if (data.improved) {
       onCelebrate?.(
-        `📈 ${activeLesson.title} — +${data.xpAwarded} XP (${data.correct}/${data.totalQuestions}). Keep going for ${fullXp}!`
+        `📈 ${activeLesson.title} — +${data.xpAwarded} XP (${data.correct}/${data.totalQuestions}). Go for ${fullXp}!`
       );
     } else if (data.alreadyDone) {
-      onCelebrate?.(`Great practice on ${activeLesson.title}!`);
+      onCelebrate?.(`Nice practice on ${activeLesson.title}!`);
     }
 
     setActiveLesson(null);
@@ -85,10 +85,9 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
         <div>
           <h2 className="manual-lessons-title">📖 Training Manual</h2>
           <p className="manual-lessons-sub">
-            Tap a lesson — learn in <strong>quick bites</strong>, then take the quiz. Pass with{" "}
-            <strong>{needPass}/10</strong> to unlock the next lesson (+${LESSON_CASH_REWARD}). Score{" "}
-            <strong>10/10</strong> for <strong>Perfect Ace</strong> and full <strong>{fullXp} XP</strong>.
-            Miss a question? We re-teach before you move on.
+            Tap a lesson. Read <strong>short steps</strong>, then take the quiz. Get{" "}
+            <strong>{needPass}</strong> right to pass (+${LESSON_CASH_REWARD}). Get{" "}
+            <strong>10/10</strong> for a ⭐ Super Star and <strong>{fullXp} XP</strong>.
           </p>
         </div>
         <div className="manual-lessons-stats">
@@ -124,9 +123,9 @@ export function LessonPanel({ user, onUserUpdate, onCelebrate }: LessonPanelProp
                   <span className="manual-lesson-name">{lesson.title}</span>
                   <span className="manual-lesson-reward">
                     {isPerfect
-                      ? `Perfect · ${fullXp} XP`
+                      ? `⭐ Super Star · ${fullXp} XP`
                       : isDone
-                        ? "Passed · retake for ⭐"
+                        ? "Passed · go for ⭐"
                         : unlocked
                           ? `+$${LESSON_CASH_REWARD} · up to ${fullXp} XP`
                           : "Locked"}

@@ -3,18 +3,25 @@
 import { useState } from "react";
 import { login, register } from "@/lib/auth-client";
 import type { UserBundle } from "@/types/user";
-import { STARTING_CASH, LESSON_CASH_REWARD, MANUAL_LESSONS } from "@/lib/manual-lessons";
+import { STARTING_CASH, LESSON_CASH_REWARD, MANUAL_LESSONS, maxLessonXp } from "@/lib/manual-lessons";
 
 interface AuthScreenProps {
   onAuth: (user: UserBundle) => void;
 }
 
 const FLOATING_CARDS = [
-  { label: "Growth", emoji: "📈", rarity: "rare", delay: "0s" },
-  { label: "Dividend", emoji: "💎", rarity: "epic", delay: "1.2s" },
-  { label: "Index", emoji: "🌟", rarity: "common", delay: "2.4s" },
-  { label: "Bond", emoji: "🛡️", rarity: "uncommon", delay: "0.8s" },
-  { label: "ETF", emoji: "⚡", rarity: "legendary", delay: "1.8s" },
+  { label: "Apple", emoji: "🍎", rarity: "rare", delay: "0s" },
+  { label: "Nike", emoji: "👟", rarity: "epic", delay: "1.2s" },
+  { label: "Tesla", emoji: "🚗", rarity: "legendary", delay: "2.4s" },
+  { label: "Disney", emoji: "🏰", rarity: "uncommon", delay: "0.8s" },
+  { label: "Nvidia", emoji: "🎮", rarity: "common", delay: "1.8s" },
+];
+
+const STEPS = [
+  { icon: "📖", title: "Learn", text: "Quick tips — easy words, no boring lectures" },
+  { icon: "🎯", title: "Quiz", text: "10 questions. Miss one? We teach it again" },
+  { icon: "💵", title: "Earn", text: "Win coins + XP like a real game" },
+  { icon: "📒", title: "Collect", text: "Fill your binder with company cards" },
 ];
 
 export function AuthScreen({ onAuth }: AuthScreenProps) {
@@ -42,6 +49,11 @@ export function AuthScreen({ onAuth }: AuthScreenProps) {
     }
   };
 
+  const scrollToSignup = () => {
+    document.getElementById("auth-signup")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    setMode("register");
+  };
+
   return (
     <div className="auth-screen">
       <div className="auth-layout">
@@ -63,63 +75,73 @@ export function AuthScreen({ onAuth }: AuthScreenProps) {
           </div>
 
           <div className="auth-hero-content">
-            <span className="auth-badge">New trainers welcome!</span>
+            <span className="auth-badge">Free · Made for kids · Super fun</span>
             <h1 className="auth-logo">
               <span className="auth-logo__bolt">⚡</span>
               PokeInvest
             </h1>
             <p className="auth-tagline">
-              Catch stock cards, fill your binder, and level up your money skills —
-              just like building the ultimate card collection!
+              <strong>Collect company cards. Learn money. Level up.</strong>
+              <br />
+              It&apos;s like a Pokémon game — but you build real investing skills!
             </p>
+
+            <button type="button" className="auth-hero-cta" onClick={scrollToSignup}>
+              Start free →
+            </button>
+
+            <div className="auth-steps">
+              {STEPS.map((step) => (
+                <div className="auth-step" key={step.title}>
+                  <span className="auth-step__icon">{step.icon}</span>
+                  <div>
+                    <strong>{step.title}</strong>
+                    <span>{step.text}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
             <ul className="auth-perks">
               <li className="auth-perk">
                 <span className="auth-perk__icon">💵</span>
                 <div>
-                  <strong>${STARTING_CASH.toLocaleString()} starter pack</strong>
-                  <span>Jump in with trainer cash on day one</span>
+                  <strong>${STARTING_CASH.toLocaleString()} to start</strong>
+                  <span>Play with trainer coins on day one</span>
                 </div>
               </li>
               <li className="auth-perk">
                 <span className="auth-perk__icon">📚</span>
                 <div>
-                  <strong>{MANUAL_LESSONS.length} training lessons</strong>
-                  <span>Learn investing one card at a time</span>
+                  <strong>{MANUAL_LESSONS.length} fun lessons</strong>
+                  <span>Small bites + quizzes — not long reading</span>
                 </div>
               </li>
               <li className="auth-perk">
                 <span className="auth-perk__icon">🎁</span>
                 <div>
-                  <strong>+${LESSON_CASH_REWARD} per lesson</strong>
-                  <span>Earn rewards as you complete each quest</span>
-                </div>
-              </li>
-              <li className="auth-perk">
-                <span className="auth-perk__icon">📒</span>
-                <div>
-                  <strong>Your own binder</strong>
-                  <span>Track holdings like a real collector</span>
+                  <strong>+${LESSON_CASH_REWARD} every lesson</strong>
+                  <span>Up to {maxLessonXp()} XP if you ace the quiz</span>
                 </div>
               </li>
             </ul>
 
             <p className="auth-hero-footnote">
-              Free to join · Kid-friendly · Grown-up smart
+              No credit card · Safe for ages 8+ · Learn at your own pace
             </p>
           </div>
         </section>
 
-        <section className="auth-panel" aria-label="Sign in or create account">
+        <section className="auth-panel" id="auth-signup" aria-label="Sign in or create account">
           <div className="auth-card">
             <div className="auth-card-header">
               <h2 className="auth-card-title">
-                {mode === "register" ? "Start your journey" : "Welcome back, trainer"}
+                {mode === "register" ? "Join the league!" : "Welcome back!"}
               </h2>
               <p className="auth-card-subtitle">
                 {mode === "register"
-                  ? "Create your trainer account and open your first binder page."
-                  : "Log in to check your portfolio and keep collecting."}
+                  ? "Pick a trainer name. Get your binder. Catch your first card."
+                  : "Log in and check your binder + coins."}
               </p>
             </div>
 
@@ -131,7 +153,7 @@ export function AuthScreen({ onAuth }: AuthScreenProps) {
                 className={mode === "register" ? "active" : ""}
                 onClick={() => setMode("register")}
               >
-                Create account
+                Sign up free
               </button>
               <button
                 type="button"
@@ -152,7 +174,7 @@ export function AuthScreen({ onAuth }: AuthScreenProps) {
                     type="text"
                     value={displayName}
                     onChange={(e) => setDisplayName(e.target.value)}
-                    placeholder="CardMaster42"
+                    placeholder="Pick a cool name"
                     autoComplete="nickname"
                   />
                 </label>
@@ -165,7 +187,7 @@ export function AuthScreen({ onAuth }: AuthScreenProps) {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   autoComplete="email"
-                  placeholder="trainer@example.com"
+                  placeholder="you@email.com"
                 />
               </label>
               <label>
@@ -177,26 +199,30 @@ export function AuthScreen({ onAuth }: AuthScreenProps) {
                   required
                   minLength={6}
                   autoComplete={mode === "login" ? "current-password" : "new-password"}
-                  placeholder="At least 6 characters"
+                  placeholder="6+ characters"
                 />
               </label>
 
-              {error && <p className="auth-error" role="alert">{error}</p>}
+              {error && (
+                <p className="auth-error" role="alert">
+                  {error}
+                </p>
+              )}
 
               <button type="submit" className="auth-submit" disabled={loading}>
                 {loading ? (
-                  <span className="auth-loading">Catching cards…</span>
+                  <span className="auth-loading">Loading…</span>
                 ) : mode === "login" ? (
-                  "Enter the League →"
+                  "Log in →"
                 ) : (
-                  "Catch your first card →"
+                  "Create my account →"
                 )}
               </button>
             </form>
 
             {mode === "register" && (
               <p className="auth-card-footnote">
-                Join thousands of trainers learning to invest the fun way.
+                🃏 Your first company card is waiting inside.
               </p>
             )}
           </div>

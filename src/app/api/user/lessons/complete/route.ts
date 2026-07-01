@@ -42,7 +42,7 @@ export async function POST(request: Request) {
     const need = passNeed(totalQuestions);
     return NextResponse.json(
       {
-        error: `Need at least ${need}/${totalQuestions} correct to pass. Review the tips and try again!`,
+        error: `You need ${need} right to pass. Read the steps and try again!`,
       },
       { status: 400 }
     );
